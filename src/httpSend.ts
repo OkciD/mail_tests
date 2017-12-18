@@ -13,7 +13,7 @@ export default function httpSend(address: string, method: string, body: any = {}
         .then((response: Response) => {
             let jsonPromise = response.json();
             if (response.status >= 400) {
-                return jsonPromise.then(errorJson => {
+                return jsonPromise.then((errorJson: {error: string}) => {
                     throw errorJson;
                 });
             }

@@ -3,3 +3,4 @@ package-lock.json
 .idea
 geckodriver
 selenium-server-standalone-3.5.3.jar
+errorShots
