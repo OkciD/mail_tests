@@ -89,6 +89,13 @@ describe("[negative] authentication", () => {
         });
     });
 
+    it("definitely won't work with forbidden chars in password", () => {
+        loginField.value = "";
+        passwordField.setValue("lol").then(() => {
+            assertHasError(passwordField);
+        });
+    });
+
     after(async () => {
         await UserService.freeUser(user.id);
         user = null;

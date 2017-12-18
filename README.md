@@ -10,7 +10,5 @@ It checks the contents of the auth form on the main page and makes successful an
  2. *WebdriverIO* needs *selenium-standalone-server* to be running while performing tests, that's why it was put in a 
  *Docker* container. Execute these scripts:
      - `sudo docker build -t "mail_tests_selenium" ./` - build
-     - `sudo docker run -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -p 4444:4444 -d mail_tests_selenium
-    ` - run
-        - if error `Error: cannot open display: unix:0.0` appears, execute `xhost +local:`
+     - `sudo docker run -p 4444:4444 -d mail_tests_selenium` - run
  3. Run `npm install` and `npm test`
