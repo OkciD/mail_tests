@@ -7,15 +7,16 @@ describe("authentication", () => {
     let loginField: any;
     let passwordField: any;
     let submitButton: any;
+    const positiveResultUrl: string = "https://e.mail.ru/messages/inbox/";
 
     before(async () => {
-        browser.url("https://mail.ru/");
+        await browser.url("https://mail.ru/");
         await UserService.getUser()
             .then((returnedUser: User) => {
                 user = returnedUser;
             });
-        loginField = browser.$("input.mailbox\\:login");
-        passwordField = browser.$("input.mailbox\\:password");
+        loginField = browser.$("input#mailbox\\:login");
+        passwordField = browser.$("input#mailbox\\:password");
         submitButton = browser.$("input[value=\"Войти\"]");
     });
 
@@ -27,7 +28,7 @@ describe("authentication", () => {
         loginField.value = user.email.split("@")[0];
         passwordField.value = user.password;
         submitButton.click().then(() => {
-            assert.equal(browser.getUrl().includes("https://e.mail.ru/"), true);
+            assert.equal(browser.getUrl().includes(positiveResultUrl), true);
         });
     });
 
@@ -35,7 +36,7 @@ describe("authentication", () => {
         loginField.value = user.email;
         passwordField.value = user.password;
         submitButton.click().then(() => {
-            assert.equal(browser.getUrl().includes("https://e.mail.ru/"), true);
+            assert.equal(browser.getUrl().includes(positiveResultUrl), true);
         });
     });
 
