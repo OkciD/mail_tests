@@ -130,7 +130,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        compilers: ['ts-node/register']
+        compilers: ['ts-node/register'],
+        bail: true
     }
     //
     // =====
