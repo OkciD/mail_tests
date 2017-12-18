@@ -1,7 +1,7 @@
 import * as assert from "assert";
 
 describe("mail.ru main page's auth form", () => {
-    let mailboxBody: Client<Element> & Element;
+    let mailboxBody: any;
 
     before(() => {
         browser.url("https://mail.ru/");
