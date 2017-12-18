@@ -91,7 +91,7 @@ describe("[negative] authentication", () => {
 
     it("definitely won't work with forbidden chars in password", () => {
         loginField.value = "";
-        passwordField.setValue("lol").then(() => {
+        passwordField.setValue(" lol ").then(() => {
             assertHasError(passwordField);
         });
     });
