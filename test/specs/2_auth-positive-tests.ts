@@ -2,7 +2,7 @@ import * as assert from "assert";
 import User from "../../src/user";
 import UserService from "../../src/user-service";
 
-describe("authentication", () => {
+describe("[positive] authentication", () => {
     let user: User;
     let loginField: any;
     let passwordField: any;

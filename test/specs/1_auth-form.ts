@@ -3,8 +3,8 @@ import * as assert from "assert";
 describe("mail.ru main page's auth form", () => {
     let mailboxBody: any;
 
-    before(() => {
-        browser.url("https://mail.ru/");
+    before(async () => {
+        await browser.url("https://mail.ru/");
     });
 
     it("should exist", () => {
