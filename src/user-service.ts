@@ -1,5 +1,5 @@
 import User from "./user";
-import httpSend from "./httpSend";
+import httpSend from "./http-send";
 
 
 export default abstract class UserService {
