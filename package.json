@@ -2,7 +2,8 @@
   "name": "mail_tests",
   "version": "0.0.1",
   "scripts": {
-    "start": "ts-node src/application.ts"
+    "start": "ts-node src/application.ts",
+    "test": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "dependencies": {
     "typescript": "^2.6.2",
@@ -10,10 +11,12 @@
     "ts-node": "^4.0.2",
     "webdriverio": "^4.9.11",
     "@types/webdriverio": "^4.8.6",
-    "wdio-dot-reporter": "0.0.9",
-    "wdio-mocha-framework": "^0.5.12",
     "@types/mocha": "^2.2.44",
     "node-fetch": "^1.7.3",
     "@types/node-fetch": "^1.6.7"
+  },
+  "devDependencies": {
+    "wdio-dot-reporter": "0.0.9",
+    "wdio-mocha-framework": "^0.5.12"
   }
 }
