@@ -8,6 +8,7 @@ export default abstract class UserService {
     public static getUser(): Promise<User> {
         return httpSend(`${UserService.usersDbServerUrl}/getuser`, "GET")
             .then((user: User) => {
+                console.log(`User #${user.id} engaged`);
                 return user;
             })
             .catch((errorJson: {error: string}) => {

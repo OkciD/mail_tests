@@ -58,7 +58,7 @@ exports.config = {
     // By default WebdriverIO commands are executed in a synchronous way using
     // the wdio-sync package. If you still want to run your test in an async way
     // e.g. using promises you can set the sync option to false.
-    sync: true,
+    sync: false,
     //
     // Level of logging verbosity: silent | verbose | command | data | result | error
     logLevel: 'verbose',
@@ -71,7 +71,7 @@ exports.config = {
     //
     // If you only want to run your test until a specific amount of test have failed use
     // bail (default is 0 - don't bail, run all test).
-    bail: 0,
+    bail: 1,
     //
     // Saves a screenshot to a given path if a command fails.
     // screenshotPath: './errorShots/',

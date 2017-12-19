@@ -1,35 +1,67 @@
 import * as assert from "assert";
 
 describe("mail.ru main page's auth form", () => {
-    let mailboxBody: any;
+    const mailUrl: string = "https://mail.ru/";
+    const mailboxBodySelector: string = "form#auth div.mailbox__body";
+    const textInputSelector: string = "input[type=\"text\"]";
+    const passwordInputSelector: string = "input[type=\"password\"]";
+    const submitInputSelector: string = "input[type=\"submit\"]";
+    const domainSelectSelector: string = "select#mailbox\\:domain";
 
-    before(async () => {
-        await browser.url("https://mail.ru/");
+    before(() => {
+        browser.url(mailUrl);
     });
 
-    it("should exist", () => {
-        mailboxBody = browser.$("form#auth div.mailbox__body");
-        assert.equal(mailboxBody.isExisting(), true);
-    });
-
-
-    it("should have all the necessary inputs", () => {
-        const inputTypes: Set<string> = new Set(["text", "password", "checkbox", "submit"]);
-        const inputs = mailboxBody.$$("input");
-
-        assert.equal(inputTypes.size, inputs.length);
-
-        const hasAllInputs: boolean = inputs
-            .every((input: HTMLInputElement) => {
-                return inputTypes.has(input.getAttribute("type"));
+    it("should exist", async () => {
+        await browser
+            .$(mailboxBodySelector)
+            .isExisting()
+            .then((exists: boolean) => {
+                assert.equal(exists, true);
             });
-        assert.equal(hasAllInputs ,true);
     });
 
-    it("should have @mail.ru domain selected", () => {
-        const domainSelector: HTMLSelectElement = mailboxBody.$("select#mailbox\\:domain");
 
-        assert.equal(domainSelector.isExisting(), true);
-        assert.equal(domainSelector.getValue(), "@mail.ru");
+    it("should have text input", async () => {
+        await browser
+            .$(mailboxBodySelector)
+            .$(textInputSelector)
+            .isExisting()
+            .then((exists: boolean) => {
+                assert.equal(exists, true);
+            });
+    });
+
+    it("should have password input", async () => {
+        await browser
+            .$(mailboxBodySelector)
+            .$(passwordInputSelector)
+            .isExisting()
+            .then((exists: boolean) => {
+                assert.equal(exists, true);
+            });
+    });
+
+    it("should have submit input", async () => {
+        await browser
+            .$(mailboxBodySelector)
+            .$(submitInputSelector)
+            .isExisting()
+            .then((exists: boolean) => {
+                assert.equal(exists, true);
+            });
+    });
+
+    it("should have @mail.ru domain selected", async () => {
+        await browser
+            .$(domainSelectSelector)
+            .isExisting()
+            .then((exists: boolean) => {
+                assert.equal(exists, true);
+            })
+            .getValue(domainSelectSelector)
+            .then((domain: string) => {
+                assert.equal(domain, "@mail.ru");
+            });
     });
 });
