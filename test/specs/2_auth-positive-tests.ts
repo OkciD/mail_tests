@@ -1,16 +1,10 @@
 import * as assert from "assert";
 import User from "../../src/user";
 import UserService from "../../src/user-service";
+import Constants from "../constants";
 
 describe("[positive] authentication", () => {
     let user: User;
-    const mailUrl: string = "https://mail.ru/";
-    const loginFieldSelector: string = "input#mailbox\\:login";
-    const passwordFieldSelector: string = "input#mailbox\\:password";
-    const submitButtonSelector: string = "input[value=\"Войти\"]";
-    const positiveResultUrl: string = "https://e.mail.ru/messages/inbox/";
-    const logoutLinkSelector: string = "a#PH_logoutLink";
-    const pageLoadingTimeDelay: number = 5000;
 
     before(async () => {
         await UserService.getUser()
@@ -30,27 +24,27 @@ describe("[positive] authentication", () => {
 
     it("should be successful without \"@mail.ru\" in email", async () => {
         await browser
-            .url(mailUrl)
-            .setValue(loginFieldSelector, user.email.split("@")[0])
-            .setValue(passwordFieldSelector, user.password)
-            .click(submitButtonSelector)
-            .pause(pageLoadingTimeDelay)
+            .url(Constants.mailUrl)
+            .setValue(Constants.loginFieldSelector, user.email.split("@")[0])
+            .setValue(Constants.passwordFieldSelector, user.password)
+            .click(Constants.submitButtonSelector)
+            .pause(Constants.pageLoadingTimeDelay)
             .getUrl()
             .then((url: string) => {
-                assert.equal(url.includes(positiveResultUrl), true);
+                assert.equal(url.includes(Constants.positiveResultUrl), true);
             });
     });
 
     it("should be successful with \"@mail.ru\" in email", async () => {
         await browser
-            .click(logoutLinkSelector)
-            .setValue(loginFieldSelector, user.email)
-            .setValue(passwordFieldSelector, user.password)
-            .click(submitButtonSelector)
-            .pause(pageLoadingTimeDelay)
+            .click(Constants.logoutLinkSelector)
+            .setValue(Constants.loginFieldSelector, user.email)
+            .setValue(Constants.passwordFieldSelector, user.password)
+            .click(Constants.submitButtonSelector)
+            .pause(Constants.pageLoadingTimeDelay)
             .getUrl()
             .then((url: string) => {
-                assert.equal(url.includes(positiveResultUrl), true);
+                assert.equal(url.includes(Constants.positiveResultUrl), true);
             });
     });
 });

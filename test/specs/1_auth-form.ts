@@ -1,20 +1,16 @@
 import * as assert from "assert";
+import Constants from "../constants";
 
 describe("mail.ru main page's auth form", () => {
-    const mailUrl: string = "https://mail.ru/";
-    const mailboxBodySelector: string = "form#auth div.mailbox__body";
-    const textInputSelector: string = "input[type=\"text\"]";
-    const passwordInputSelector: string = "input[type=\"password\"]";
-    const submitInputSelector: string = "input[type=\"submit\"]";
-    const domainSelectSelector: string = "select#mailbox\\:domain";
+
 
     before(() => {
-        browser.url(mailUrl);
+        browser.url(Constants.mailUrl);
     });
 
     it("should exist", async () => {
         await browser
-            .$(mailboxBodySelector)
+            .$(Constants.mailboxBodySelector)
             .isExisting()
             .then((exists: boolean) => {
                 assert.equal(exists, true);
@@ -24,8 +20,8 @@ describe("mail.ru main page's auth form", () => {
 
     it("should have text input", async () => {
         await browser
-            .$(mailboxBodySelector)
-            .$(textInputSelector)
+            .$(Constants.mailboxBodySelector)
+            .$(Constants.textInputSelector)
             .isExisting()
             .then((exists: boolean) => {
                 assert.equal(exists, true);
@@ -34,8 +30,8 @@ describe("mail.ru main page's auth form", () => {
 
     it("should have password input", async () => {
         await browser
-            .$(mailboxBodySelector)
-            .$(passwordInputSelector)
+            .$(Constants.mailboxBodySelector)
+            .$(Constants.passwordInputSelector)
             .isExisting()
             .then((exists: boolean) => {
                 assert.equal(exists, true);
@@ -44,8 +40,8 @@ describe("mail.ru main page's auth form", () => {
 
     it("should have submit input", async () => {
         await browser
-            .$(mailboxBodySelector)
-            .$(submitInputSelector)
+            .$(Constants.mailboxBodySelector)
+            .$(Constants.submitInputSelector)
             .isExisting()
             .then((exists: boolean) => {
                 assert.equal(exists, true);
@@ -54,12 +50,12 @@ describe("mail.ru main page's auth form", () => {
 
     it("should have @mail.ru domain selected", async () => {
         await browser
-            .$(domainSelectSelector)
+            .$(Constants.domainSelectSelector)
             .isExisting()
             .then((exists: boolean) => {
                 assert.equal(exists, true);
             })
-            .getValue(domainSelectSelector)
+            .getValue(Constants.domainSelectSelector)
             .then((domain: string) => {
                 assert.equal(domain, "@mail.ru");
             });
