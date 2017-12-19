@@ -134,7 +134,8 @@ exports.config = {
     mochaOpts: {
         ui: 'bdd',
         compilers: ['ts-node/register'],
-        bail: true
+        bail: true,
+        timeout: 20000
     }
     //
     // =====

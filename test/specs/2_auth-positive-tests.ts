@@ -37,6 +37,7 @@ describe("[positive] authentication", () => {
 
     it("should be successful with \"@mail.ru\" in email", async () => {
         await browser
+            .pause(Constants.pageLoadingTimeDelay)
             .click(Constants.logoutLinkSelector)
             .setValue(Constants.loginFieldSelector, user.email)
             .setValue(Constants.passwordFieldSelector, user.password)
